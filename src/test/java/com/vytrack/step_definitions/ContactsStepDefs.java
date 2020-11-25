@@ -80,8 +80,11 @@ public class ContactsStepDefs {
 
     @Then("the information should be same with database")
     public void the_information_should_be_same_with_database() {
+
         //get information from UI
+
         ContactInfoPage contactInfoPage = new ContactInfoPage();
+
         String actualFullName = contactInfoPage.contactFullName.getText();
         String actualEmail = contactInfoPage.email.getText();
         String actualPhone = contactInfoPage.phone.getText();
@@ -94,11 +97,13 @@ public class ContactsStepDefs {
 
         //we are getting only one row of result
         //query for retrieving firstname,lastname,email,phone
+
         String query ="select concat(first_name,' ',last_name) as \"full_name\",e.email,phone\n" +
                 "from orocrm_contact c join orocrm_contact_email e\n" +
                 "on c.id = e.owner_id join orocrm_contact_phone p\n" +
                 "on e.owner_id = p.owner_id\n" +
                 "where e.email='mbrackstone9@example.com'";
+
         //get info and save in the map
         Map<String, Object> rowMap = DBUtils.getRowMap(query);
 
@@ -134,13 +139,16 @@ public class ContactsStepDefs {
 
         //get information from database
 
+       // DBUtils.createConnection();
         //we are getting only one row of result
         //query for retrieving firstname,lastname,email,phone
+
         String query ="select concat(first_name,' ',last_name) as \"full_name\",e.email,phone\n" +
                 "from orocrm_contact c join orocrm_contact_email e\n" +
                 "on c.id = e.owner_id join orocrm_contact_phone p\n" +
                 "on e.owner_id = p.owner_id\n" +
                 "where e.email='"+email+"'";
+
         //get info and save in the map
         Map<String, Object> rowMap = DBUtils.getRowMap(query);
 
